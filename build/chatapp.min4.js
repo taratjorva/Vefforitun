@@ -40,7 +40,7 @@ app.config(["$routeProvider", function($routeProvider) {
 					SocketService.setConnected(socket);
 					SocketService.setUsername($scope.username);
 
-					$location.path("/room/lobby");
+					$location.path("/rooms/lobby");
 				}
 				else {
 					$scope.message = "Your name is taken, please choose another";
@@ -71,6 +71,7 @@ app.config(["$routeProvider", function($routeProvider) {
 				$scope.users = users;
 			}
 		});
+
 		socket.on("roomlist", function(rooms) {
 			$scope.rooms = rooms;
 		});
@@ -82,7 +83,7 @@ app.config(["$routeProvider", function($routeProvider) {
 	$scope.createChannel = function(){
 	if(socket) {
 
-					socket.emit("joinroom", { room: $scope.roomName, pass: "" }, function(success, errorMessage) {
+				socket.emit("joinroom", { room: $scope.roomName, pass: "" }, function(success, errorMessage) {
  
 				if(success) {
 					SocketService.setConnected(socket);
