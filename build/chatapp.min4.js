@@ -72,7 +72,7 @@ app.config(["$routeProvider", function($routeProvider) {
 			}
 		});
 		socket.on("roomlist", function(rooms) {
-			
+			$scope.rooms = rooms;
 		});
 		/*socket.on('rooms', function() {
 		socket.emit('roomlist', rooms);*/
@@ -80,18 +80,20 @@ app.config(["$routeProvider", function($routeProvider) {
 
 	}
 	$scope.createChannel = function(){
-		var channel;
-      console.log('createChannel', $scope);
-      if (!$scope.newChannel) {
-        return;
-      }
-      channel = $scope.newChannel;
-      $scope.newChannel = '';
-      /*PubNub.ngPublish({
-        channel: $scope.controlChannel,
-        message: channel
+	if(socket) {
 
-      });*/};
+					socket.emit("joinroom", { room: $scope.roomName, pass: "" }, function(success, errorMessage) {
+ 
+				if(success) {
+					SocketService.setConnected(socket);
+					//SocketService.setUsername($scope.username);
+
+					$location.path("/room/create");
+				}
+					});
+		}
+	};
+		
 	$scope.send = function() {
 		if(socket) {
 			console.log("I sent a message to " + $scope.roomName + ": " + $scope.currentMessage);
