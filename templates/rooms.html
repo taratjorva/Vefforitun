@@ -7,6 +7,9 @@
         <div class="span10 offset1" style="text-align: center">
             <h2>System details updated using server-sent events</h2>
         </div>
+        <li ng-repeat="Room in Rooms">
+                        {{ rooms }}
+                    </li>
         <ul ng-repeat="channel in channels">
             <li><a href="createChannel()">{{roomName}}</a></li>
             <li><button ng-click="joinChannel(Channel)">{roomName}}</button></li>

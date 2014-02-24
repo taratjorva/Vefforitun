@@ -20,6 +20,7 @@ app.controller("RoomController", ["$scope", "$routeParams", "SocketService", fun
 				$scope.users = users;
 			}
 		});
+
 		socket.on("roomlist", function(rooms) {
 			$scope.rooms = rooms;
 		});
@@ -31,7 +32,7 @@ app.controller("RoomController", ["$scope", "$routeParams", "SocketService", fun
 	$scope.createChannel = function(){
 	if(socket) {
 
-					socket.emit("joinroom", { room: $scope.roomName, pass: "" }, function(success, errorMessage) {
+				socket.emit("joinroom", { room: $scope.roomName, pass: "" }, function(success, errorMessage) {
  
 				if(success) {
 					SocketService.setConnected(socket);
