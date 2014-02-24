@@ -20,8 +20,27 @@ app.controller("RoomController", ["$scope", "$routeParams", "SocketService", fun
 				$scope.users = users;
 			}
 		});
-	}
+		socket.on("roomlist", function(rooms) {
+			
+		});
+		/*socket.on('rooms', function() {
+		socket.emit('roomlist', rooms);*/
+	
 
+	}
+	$scope.createChannel = function(){
+		var channel;
+      console.log('createChannel', $scope);
+      if (!$scope.newChannel) {
+        return;
+      }
+      channel = $scope.newChannel;
+      $scope.newChannel = '';
+      /*PubNub.ngPublish({
+        channel: $scope.controlChannel,
+        message: channel
+
+      });*/};
 	$scope.send = function() {
 		if(socket) {
 			console.log("I sent a message to " + $scope.roomName + ": " + $scope.currentMessage);
@@ -35,4 +54,5 @@ app.controller("RoomController", ["$scope", "$routeParams", "SocketService", fun
 			$scope.send();
 		}
 	};
+
 }]);

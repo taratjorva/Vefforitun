@@ -6,8 +6,8 @@
             <h2>System details updated using server-sent events</h2>
         </div>
         <ul ng-repeat="channel in channels">
-            <li><a href="room/{{channel.id}}">{{channel.name}}</a></li>
-            <li><button ng-click="joinChannel(channel.id)">{{channel.name}}</button></li>
+            <li><a href="rooms/{{Channel}}">{{roomName}}</a></li>
+            <li><button ng-click="joinChannel(Channel)">{roomName}}</button></li>
         </ul>
     </div>
    
