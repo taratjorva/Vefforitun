@@ -20,4 +20,5 @@ app.controller("LoginController", ["$scope", "$location", "SocketService", funct
 		}
 	};
 
+
 }]);

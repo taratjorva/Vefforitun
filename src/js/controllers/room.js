@@ -3,12 +3,12 @@ app.controller("RoomController", ["$scope","$location", "$routeParams", "SocketS
 	$scope.currentMessage = "";
 
 	var socket = SocketService.getSocket();
-	var socket2 = io.connect('http://localhost:8080');
+	//var socket2 = io.connect('http://localhost:8080');
 
 	if(socket) {
-		/*socket.emit("joinroom", { room: $scope.roomName, pass: "" }, function(success, errorMessage) {
+		socket.emit("joinroom", { room: $scope.roomName, pass: "" }, function(success, errorMessage) {
 
-		});*/
+		});
 		socket.on("updatechat", function(roomname, messageHistory) {
 			console.log(messageHistory);
 			$scope.messages = messageHistory;
@@ -32,22 +32,10 @@ app.controller("RoomController", ["$scope","$location", "$routeParams", "SocketS
 	}
 	
 	$scope.createChannel = function(){
-	if(socket) {
-				
-				socket.emit("joinroom", { room:  $scope.roomName , pass: "" }, function(available) {
- 
-				if(available) {
-					SocketService.setConnected(socket);
-					SocketService.setUsername($scope.username);
-					//rooms.lobby = new Room();
+	
+	$location.path("/room/create");
 
-				$location.path("/room/roomName");
-				}
-				$scope.$apply();
-					});
-		}
 	};
-		
 	$scope.send = function() {
 		if(socket) {
 			console.log("I sent a message to " + $scope.roomName + ": " + $scope.currentMessage);
@@ -61,5 +49,4 @@ app.controller("RoomController", ["$scope","$location", "$routeParams", "SocketS
 			$scope.send();
 		}
 	};
-
 }]);
