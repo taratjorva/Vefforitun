@@ -1,32 +1,36 @@
 
-  
+<div class="container">  
   <h1>Welcome to lallaland</h1> 
   <h2> Room List </h2> 
 
     <div>
-        <div class="span10 offset1" style="text-align: center">
-            <h2>System details updated using server-sent events</h2>
-        </div>
-        <li ng-repeat="Room in Rooms">
-                        {{ rooms }}
-                    </li>
+        
         <ul ng-repeat="channel in channels">
             <li><a href="createChannel()">{{roomName}}</a></li>
             <li><button ng-click="joinChannel(Channel)">{roomName}}</button></li>
         </ul>
     </div>
-   
+<div class="col-md-3 col-xs-3">
+                <p>Rooms</p>
+                <ul>
+                    <li ng-repeat="Room in Rooms">
+                        {{ rooms }}
+                    </li>
+                </ul>
+            </div>
 <form>
     <input type="text" ng-model="form.channel"  />
     <button ng-click="createChannel()">Add</button>
 </form>
-<form>
+    <input ng-model="room" placeholder="Insert name here">
     <button ng-click="createChannel()">Connect to channel!</button>
+
+<form>
 <p ng-bind="message"></p>
-    <input type="text" ng-model="form.message"/>
-    <button ng-click="$scope.roomName">Add</button>
+    <input type="text" ng-model="roomName"/>
+    <button ng-click="createChannel()">Add</button>
 </form>
-    
+</div>
 
 
 
