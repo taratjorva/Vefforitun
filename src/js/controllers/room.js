@@ -1,4 +1,4 @@
-app.controller("RoomController", ["$scope", "$routeParams", "SocketService", function($scope, $routeParams, SocketService) {
+app.controller("RoomController", ["$scope","$location", "$routeParams", "SocketService", function($scope,$location, $routeParams, SocketService) {
 	$scope.roomName = $routeParams.roomName;
 	$scope.currentMessage = "";
 
@@ -32,15 +32,16 @@ app.controller("RoomController", ["$scope", "$routeParams", "SocketService", fun
 	}
 	
 	$scope.createChannel = function(){
-	if(socket2) {
+	if(socket) {
 				
-				socket2.emit("joinroom", { room:  $scope.roomName , pass: "" }, function(available) {
+				socket.emit("joinroom", { room:  $scope.roomName , pass: "" }, function(available) {
  
-				if(true) {
+				if(available) {
 					SocketService.setConnected(socket);
-					//SocketService.setUsername($scope.username);*/
+					SocketService.setUsername($scope.username);
 					//rooms.lobby = new Room();
-				$location.path("/room/$scope.roomName");
+
+				$location.path("/room/roomName");
 				}
 				$scope.$apply();
 					});

@@ -4,14 +4,12 @@ app.controller("LoginController", ["$scope", "$location", "SocketService", funct
 	var socket = io.connect('http://localhost:8080');
 
 	$scope.connect = function() {
-			var socket = io.connect('http://localhost:8080');
 
 		if(socket) {
 			socket.emit("adduser", $scope.username, function(available) {
 				if(available) {
 					SocketService.setConnected(socket);
 					SocketService.setUsername($scope.username);
-
 					$location.path("/rooms/lobby");
 				}
 				else {
