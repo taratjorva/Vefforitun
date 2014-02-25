@@ -1,11 +1,4 @@
-
-
-
 <h1>Please choose a username:</h1>
-  <form name="loginform" method="POST">
-    <input ng-model="username" type="text" placeholder="Insert name here">
-     <div class="error-msg" ng-class="{hide_element: !error }">
-                Sorry, this username is taken! 
-     </div>
-  <button ng-click="connect()", type="submit">Connect!</button>
-</form>
+<input ng-model="username" placeholder="Insert name here">
+<button ng-click="connect()">Connect!</button>
+<p ng-bind="message"></p>
